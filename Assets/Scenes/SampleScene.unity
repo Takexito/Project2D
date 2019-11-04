@@ -573,6 +573,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bddd4154fefffb4d86bd12d2114765f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  obj: {fileID: 2099675132}
+  heal: 25
 --- !u!61 &1168695556
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -693,6 +695,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bddd4154fefffb4d86bd12d2114765f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  obj: {fileID: 2099675132}
+  heal: 25
 --- !u!61 &1340852777
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -939,10 +943,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
   curHealth: 100
-  HealItem: {fileID: 0}
-  heal: 25
-  healthObject: {fileID: 0}
-  healthText: {fileID: 1406905788}
+  maxHealth: 0
 --- !u!114 &1406905788
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -989,10 +990,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
   curHealth: 100
-  HealItem: {fileID: 0}
-  heal: 25
-  healthObject: {fileID: 0}
-  healthText: {fileID: 0}
+  maxHealth: 0
 --- !u!222 &1406905790
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1228,6 +1226,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bddd4154fefffb4d86bd12d2114765f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  obj: {fileID: 2099675132}
+  heal: 25
 --- !u!61 &1677178117
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1348,6 +1348,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bddd4154fefffb4d86bd12d2114765f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  obj: {fileID: 2099675132}
+  heal: 25
 --- !u!61 &1787787883
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1451,7 +1453,7 @@ GameObject:
   - component: {fileID: 2012675899}
   m_Layer: 0
   m_Name: HealItem
-  m_TagString: HealItem
+  m_TagString: Potion
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1468,6 +1470,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bddd4154fefffb4d86bd12d2114765f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  obj: {fileID: 2099675132}
+  heal: 25
 --- !u!212 &2012675900
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1541,7 +1545,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -1706,10 +1710,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 2099675132}
   curHealth: 100
-  HealItem: {fileID: 0}
-  heal: 25
-  healthObject: {fileID: 1360441948}
-  healthText: {fileID: 1406905788}
+  maxHealth: 100
 --- !u!1001 &3485116667906486197
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1781,6 +1782,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Radius
       value: 0.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 4120531701808453830, guid: 45c55c98abd526247ac2481686c63029,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45c55c98abd526247ac2481686c63029, type: 3}

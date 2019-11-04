@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+//using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
@@ -9,27 +9,25 @@ public class Health : MonoBehaviour
     public GameObject Player;
 
     [Header("Текущее здоровье")]
-    public float curHealth = 100;
+    public float curHealth;
 
-    [Header("Хилка")]
-    public GameObject HealItem;
+    [Header("Максимальное здоровье")]
+    public float maxHealth;
 
-    public float heal = 25;
-
-    [Header("HealthBar")]
-    public GameObject healthObject;
+   /* [Header("HealthBar")]
+    public GameObject Bar;
 
     [Header("HP")]
-    public Text healthText;
+    public Text healthText; */
 
     void Update()
     {
-        healthObject.transform.localScale = new Vector2(curHealth / 100, 1); // Сдвиг полоски HealtBar
-        healthText.text = curHealth.ToString("0"); // Изменение числа HP
+       /* Bar.transform.localScale = new Vector2(curHealth / maxHealth, 1); // Сдвиг полоски HealtBar
+        healthText.text = curHealth.ToString("0"); // Изменение числа HP */
 
-        if (curHealth >= 100)
+        if (curHealth >= maxHealth)
         {
-            curHealth = 100;
+            curHealth = maxHealth;
         }
 
         if (curHealth <= 0)
@@ -41,25 +39,13 @@ public class Health : MonoBehaviour
 
     void Death()
     {
-        Debug.Log("Вы погибли");
         Destroy(Player);
     }
 
+    /*
     public void TakeDamage(float damage)
     {
         curHealth -= damage;
     }
-
-    public void TakeHeal()
-    {
-        curHealth += heal;
-    }
-
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "HealItem") // Условие столкновения с хилкой
-        {
-            TakeHeal();
-        }
-    }
+    */
 }

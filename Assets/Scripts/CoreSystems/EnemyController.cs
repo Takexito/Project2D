@@ -9,7 +9,10 @@ public class EnemyController : MonoBehaviour, IController
     public StatsSystem statsSystem;
     public EnemyMovement movement;
     public MonoBehaviour[] skills;
+    [Header("Debug")]
     public bool isAttack = false;
+    public bool stopMove = false;
+    public bool isStun = false;
 
     public AttackSystem GetAttackSystem()
     {
@@ -23,7 +26,9 @@ public class EnemyController : MonoBehaviour, IController
 
     void Update()
     {
-
+       // movement.isStop = stopMove;
+        movement.isStop = isStun;
+        attackSystem.isStun = isStun;
     }
 
         private void UseSkill(int index)
@@ -31,5 +36,10 @@ public class EnemyController : MonoBehaviour, IController
         if (skills[index] is ISkills) (skills[index] as ISkills).UseSkill();
     }
 
-
+    IEnumerator Stun()
+    {
+        isStun = true;
+        yield return new WaitForSeconds(0.7f); 
+        isStun = false;
+    }
 }

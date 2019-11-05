@@ -4,8 +4,11 @@ public class StatsSystem : MonoBehaviour
 {
     // Start is called before the first frame update
 
+    [Header("Максимальное здоровье")]
     public float maxHp = 100f;
-    private float currHp;
+    [Header("Текущее здоровье")]
+    public float currHp;
+    [Header("Наносимый урон")]
     public float dmg = 25f;
     public float addDmg;
     public bool isDie = false;
@@ -19,6 +22,12 @@ public class StatsSystem : MonoBehaviour
     void Update()
     {
         shouldDie();
+    }
+
+    public void Heal(float value)
+    {
+        currHp += value;
+        if (currHp > 100) currHp = 100;
     }
 
     public void shouldDie()

@@ -109,8 +109,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: c9f0137a5c6417449a12784e32fd1eb3, type: 3}
+  m_Color: {r: 0.23584908, g: 0.23584908, b: 0.23584908, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -135,16 +135,16 @@ BoxCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
-    border: {x: 0.049999997, y: 0.049999997, z: 0.049999997, w: 0.049999997}
+    border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.16, y: 0.16}
+    oldSize: {x: 4, y: 4}
     newSize: {x: 0.16, y: 0.16}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.16, y: 0.16}
+  m_Size: {x: 4, y: 4}
   m_EdgeRadius: 0
 --- !u!114 &6658682133629347345
 MonoBehaviour:
@@ -159,7 +159,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHp: 20
-  dmg: 50
+  currHp: 0
+  dmg: 20
   addDmg: 0
   isDie: 0
 --- !u!114 &7828062078612642424
@@ -206,7 +207,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be03d2677ccdaa441ae82a6560a814a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 50
 --- !u!50 &7780168301884709086
 Rigidbody2D:
   serializedVersion: 4
@@ -275,7 +276,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.3
+  m_Radius: 12
 --- !u!114 &2157398582487355728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -382,15 +383,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1489859595388013816}
     m_Modifications:
+    - target: {fileID: 8200570683941059336, guid: aefd7104def2d08448f9b6030fef0285,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8200570683941059336, guid: aefd7104def2d08448f9b6030fef0285,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 17
+      objectReference: {fileID: 0}
     - target: {fileID: 8200570683941059338, guid: aefd7104def2d08448f9b6030fef0285,
         type: 3}
       propertyPath: m_Name
       value: ElectricAttack
       objectReference: {fileID: 0}
+    - target: {fileID: 8200570683941059338, guid: aefd7104def2d08448f9b6030fef0285,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8200570683941059342, guid: aefd7104def2d08448f9b6030fef0285,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.168
+      value: -7.44
       objectReference: {fileID: 0}
     - target: {fileID: 8200570683941059342, guid: aefd7104def2d08448f9b6030fef0285,
         type: 3}
@@ -444,8 +460,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8200570683941059342, guid: aefd7104def2d08448f9b6030fef0285,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8200570683941059342, guid: aefd7104def2d08448f9b6030fef0285,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8200570683941059342, guid: aefd7104def2d08448f9b6030fef0285,
+        type: 3}
       propertyPath: m_LocalScale.z
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aefd7104def2d08448f9b6030fef0285, type: 3}

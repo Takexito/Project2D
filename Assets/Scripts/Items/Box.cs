@@ -7,14 +7,13 @@ public class Box : MonoBehaviour
 {
 
     private Rigidbody2D rb2d;
-    private GameObject enemy;
     private float currentSpeed;
-    [SerializeField] private float speedForDestroy = 2;
+    public float damagePerVel = 1f;
+    [SerializeField] private float speedForDestroy = 100f;
 
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
-        enemy = GameObject.FindGameObjectWithTag("Enemy");
     }
 
     void Update()
@@ -26,9 +25,11 @@ public class Box : MonoBehaviour
     {
         if (currentSpeed >= speedForDestroy)
         {
-            if (other.gameObject == enemy)
+            if (other.gameObject.CompareTag("Enemy"))
             {
-                Debug.Log("collision");
+                Debug.Log("damage: " + currentSpeed * damagePerVel/100f);
+                other.gameObject.GetComponent<IController>().GetStatsSystem().TakeDamage(currentSpeed * damagePerVel/100f);
+                other.gameObject.GetComponent<EnemyController>().StartCoroutine("Stun");
                 Destroy(gameObject);
             }
         }

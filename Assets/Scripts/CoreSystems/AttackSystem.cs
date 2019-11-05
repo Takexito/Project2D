@@ -6,7 +6,9 @@ public class AttackSystem: MonoBehaviour
 {
     public GameObject weapon;
     private bool isStop = false;
-    public float attackSpeed = 2f;
+    public float attackSpeedPerSec = 2f;
+    public bool isAttack = false;
+    public bool isStun = false;
 
     public void StopCoroutine()
     {
@@ -20,15 +22,21 @@ public class AttackSystem: MonoBehaviour
 
     IEnumerator Attack()
     {
-        isStop = false;
-        while (!isStop)
+        if (!isStun)
         {
-            Debug.Log("ATTACK!!!");
+            isStop = false;
+            isAttack = true;
+            while (!isStop)
+            {
+                Debug.Log("ATTACK!!!");
 
-            weapon.SetActive(true);
-            yield return new WaitForSeconds(0.3f);
-            weapon.SetActive(false);
-            yield return new WaitForSeconds(1f/attackSpeed);
+                weapon.SetActive(true);
+                yield return new WaitForSeconds(1f / attackSpeedPerSec);
+                //yield return new WaitForSeconds(0.3f);
+                weapon.SetActive(false);
+
+            }
+            isAttack = false;
         }
     }
 }

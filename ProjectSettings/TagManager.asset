@@ -6,8 +6,10 @@ TagManager:
   tags:
   - Have Stats
   - Enemy
-  - HealItem
   - Potion
+  - Box
+  - Wall
+  - Item
   layers:
   - Default
   - TransparentFX

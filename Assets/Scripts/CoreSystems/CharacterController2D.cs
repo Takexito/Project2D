@@ -28,7 +28,8 @@ public class CharacterController2D : MonoBehaviour, IController
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0)) attackSystem.StartCoroutine("Attack");
+        if (Input.GetMouseButtonDown(0) && !attackSystem.isAttack) attackSystem.StartCoroutine("Attack");
+        if (Input.GetMouseButtonUp(0))attackSystem.StopCoroutine();
         if (Input.GetKeyDown(KeyCode.Space)) UseSkill(0);
         if (Input.GetKeyDown(KeyCode.Q)) UseSkill(1);
         if (Input.GetKeyDown(KeyCode.E)) UseSkill(2);

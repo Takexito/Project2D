@@ -23,7 +23,7 @@ public class StormSkill : MonoBehaviour, ISkills
         while (Time.time < end)
         {
             //GameObject.FindGameObjectsWithTag("Player")[0].transform.Rotate(Vector3.forward * 60f);
-            parent.transform.Rotate(Vector3.forward * 60f);
+            parent.transform.Rotate(Vector3.forward * -60f);
             yield return new WaitForSeconds(0.1f); // Задержка выполнения следующего шага
             
         }

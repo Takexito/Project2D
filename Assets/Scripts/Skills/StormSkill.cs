@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class StormSkill : MonoBehaviour, ISkills
 {
+    public float coolDown = 2;
+    public float coolDownEnd = 0;
+
     GameObject parent;
     public void Start()
     {
@@ -10,7 +13,11 @@ public class StormSkill : MonoBehaviour, ISkills
     }
     public void UseSkill()
     {
-        StartCoroutine(StormSkillCor());
+        if (Time.time > coolDownEnd)
+        {
+            coolDownEnd = Time.time + coolDown;
+            StartCoroutine(StormSkillCor());
+        }
     }
 
     IEnumerator StormSkillCor()

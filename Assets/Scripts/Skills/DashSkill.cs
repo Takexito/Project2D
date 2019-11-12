@@ -4,10 +4,16 @@ using UnityEngine;
 
 public class DashSkill : MonoBehaviour, ISkills
 {
+    public float coolDown = 2;
+    public float coolDownEnd = 0;
     public float dashForce = 3f;
     public void UseSkill()
     {
-        StartCoroutine(DashMove()); // Использование корутины для рывка
+        if (Time.time > coolDownEnd)
+        {
+            coolDownEnd = Time.time + coolDown;
+            StartCoroutine(DashMove()); // Использование корутины для рывка
+        }
     }
 
     IEnumerator DashMove()

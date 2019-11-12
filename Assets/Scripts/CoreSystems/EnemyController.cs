@@ -29,6 +29,7 @@ public class EnemyController : MonoBehaviour, IController
        // movement.isStop = stopMove;
         movement.isStop = isStun;
         attackSystem.isStun = isStun;
+        if (Input.GetKeyDown(KeyCode.Z)) UseSkill(0);
     }
 
         private void UseSkill(int index)

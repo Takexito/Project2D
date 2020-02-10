@@ -16,8 +16,9 @@ public class CharacterAttackSystem: MonoBehaviour
     {
         if (!isAttack) 
         {
+            Single.Instance.CharacterController2D.animator.SetTrigger("IsAttack");
             StartCoroutine("Attack");
-            Single.Instance.CharacterController2D.animator.SetBool("IsAttack", true);
+            
         }
 
     }
@@ -32,14 +33,13 @@ public class CharacterAttackSystem: MonoBehaviour
         {
             
             isAttack = true;
-            Debug.Log("ATTACK!!!");
-                
-            weapon.SetActive(true);
-            yield return new WaitForSeconds(1f / attackSpeedPerSec);
-            weapon.SetActive(false);
+            weapon.SetActive(isAttack);
             Single.Instance.CharacterController2D.movement.MoveAfterHit();
+            yield return new WaitForSeconds(1f / attackSpeedPerSec);
+            
             isAttack = false;
             Single.Instance.CharacterController2D.animator.SetBool("IsAttack", false);
+            weapon.SetActive(isAttack);
 
         }
     }

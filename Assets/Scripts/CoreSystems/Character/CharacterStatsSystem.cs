@@ -34,7 +34,6 @@ public class CharacterStatsSystem : MonoBehaviour
     {
         InvokeRepeating("RegenStm", 1f, 1f);  //1s delay, repeat every 1s
         InvokeRepeating("RegenHp", 1f, 1f);  //1s delay, repeat every 1s
-
     }
 
     void RegenHp()

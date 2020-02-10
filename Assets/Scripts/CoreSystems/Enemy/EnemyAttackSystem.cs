@@ -36,6 +36,8 @@ public class EnemyAttackSystem : MonoBehaviour
                 weapon.SetActive(false);
                 //Single.Instance.CharacterController2D.movement.MoveAfterHit();
                 isAttack = false;
+                yield return new WaitForSeconds(1f);
+                StartCoroutine(Attack());
             }
         }
     }

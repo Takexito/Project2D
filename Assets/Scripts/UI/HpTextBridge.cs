@@ -10,7 +10,7 @@ public class HpTextBridge : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       stats = GameObject.FindGameObjectWithTag("Player").GetComponent<IController>().GetStatsSystem();
+       stats = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterController2D>().statsSystem;
     }
 
     // Update is called once per frame

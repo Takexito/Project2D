@@ -43,4 +43,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a77c4302e17fc5f41bc99d880861cf9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dashForce: 3
+  coolDown: 2
+  coolDownEnd: 0
+  dashForce: 2.5

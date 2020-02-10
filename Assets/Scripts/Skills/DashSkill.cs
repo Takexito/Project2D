@@ -22,10 +22,10 @@ public class DashSkill : MonoBehaviour, ISkills
         CharacterMovement movement = Single.Instance.CharacterController2D.movement;
 
         transform.Rotate(Vector3.forward * -90);
-        movement.speed *= dashForce;
+        movement.Speed *= dashForce;
         yield return new WaitForSeconds(0.1f); // Задержка выполнения следующего шага
         transform.Rotate(Vector3.forward * 90);
-        movement.speed /= dashForce;
+        movement.Speed /= dashForce;
         Single.Instance.CharacterController2D.animator.SetBool("IsJump", false);
     }
 

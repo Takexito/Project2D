@@ -25,7 +25,7 @@ public class EnemyMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Vector2.Distance(transform.position, target.position) > 200f && !controller.statsSystem.isStun)
+        if (Vector2.Distance(transform.position, target.position) > 120f && !controller.statsSystem.isStun)
         {
             Vector2 pos = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
             rigidbody2d.MovePosition(pos);

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterController2D : MonoBehaviour, IController
+public class CharacterController2D : MonoBehaviour
 {
     public CharacterAttackSystem attackSystem;
     public CharacterStatsSystem statsSystem;
@@ -11,16 +11,6 @@ public class CharacterController2D : MonoBehaviour, IController
     public GameObject target;
     public Animator animator;
     private bool isStun = false;
-
-    public CharacterAttackSystem GetAttackSystem()
-    {
-        return attackSystem;
-    }
-
-    public CharacterStatsSystem GetStatsSystem()
-    {
-        return statsSystem;
-    }
 
     // Start is called before the first frame update
     void Start()

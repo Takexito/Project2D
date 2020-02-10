@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ElectricProjectile : MonoBehaviour
+public class RoboFists : MonoBehaviour
 {
     GameObject parent;
 
@@ -20,8 +20,11 @@ public class ElectricProjectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        CharacterStatsSystem statsSystem = collision.GetComponent<CharacterStatsSystem>();
-        if (statsSystem != null)
-            statsSystem.TakeDamage(parent.GetComponent<EnemyStatsSystem>().GiveDamage());
+        if(collision.gameObject.tag == "Enemy")
+        {
+            EnemyStatsSystem statsSystem = collision.GetComponent<EnemyStatsSystem>();
+            statsSystem.TakeDamage(parent.GetComponent<CharacterStatsSystem>().GiveDamage());
+        }
+
     }
 }

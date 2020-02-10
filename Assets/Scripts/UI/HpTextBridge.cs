@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class HpTextBridge : MonoBehaviour
 {
     public Text text;
-    StatsSystem stats;
+    CharacterStatsSystem stats;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,6 +16,6 @@ public class HpTextBridge : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        text.text = stats.currHp + "/" + stats.maxHp;
+        text.text = stats.currHp + "/" + stats.maxHp + "\n" + stats.currStm + "/" + stats.maxStm;
     }
 }

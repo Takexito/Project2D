@@ -4,6 +4,7 @@ using UnityEngine;
 
 public interface IController
 {
-    AttackSystem GetAttackSystem();
-    StatsSystem GetStatsSystem();
+    CharacterAttackSystem GetAttackSystem();
+    CharacterStatsSystem GetStatsSystem();
+
 }

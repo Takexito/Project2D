@@ -20,8 +20,8 @@ public class ElectricProjectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        StatsSystem statsSystem = collision.GetComponent<StatsSystem>();
+        EnemyStatsSystem statsSystem = collision.GetComponent<EnemyStatsSystem>();
         if (statsSystem != null)
-            statsSystem.TakeDamage(parent.GetComponent<StatsSystem>().GiveDamage());
+            statsSystem.TakeDamage(parent.GetComponent<CharacterStatsSystem>().GiveDamage());
     }
 }

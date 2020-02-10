@@ -11,6 +11,12 @@ public class TeleportSkill : MonoBehaviour, ISkills
     public float coolDownEnd = 0;
 
 
+    void Start()
+    {
+        parent = Single.Instance.CharacterController2D.gameObject;
+        target = Single.Instance.CharacterController2D.target.transform;
+    }
+
     // Может ли объект телепортироватся к цели
     // Заготовка для логики на уровне (тп к стенам)
     bool canTeleport() 
@@ -38,8 +44,8 @@ public class TeleportSkill : MonoBehaviour, ISkills
         {
             coolDownEnd = Time.time + coolDown;
             Vector2 pos = target.position + Vector3.Scale(new Vector2(spaceToTarget, 0f), getBackVector());
-            (parent.GetComponent<IController>() as EnemyController).isStun = true;
-            (parent.GetComponent<IController>() as EnemyController).isStun = false;
+            (parent.GetComponent<IController>() as EnemyController).ChangeStunState(true);
+            (parent.GetComponent<IController>() as EnemyController).ChangeStunState(false);
             Debug.Log("X = " + pos.x + " Y = " + pos.y);
             parent.transform.position = pos;
         }

@@ -6,6 +6,7 @@ public class EnemyStatsSystem : MonoBehaviour
 {
 
     private EnemyController controller;
+    private CharacterAttackSystem attackSystem;
 
     // HP
     [Header("Максимальное здоровье")]
@@ -30,6 +31,7 @@ public class EnemyStatsSystem : MonoBehaviour
     void Start()
     {
         controller = gameObject.GetComponent<EnemyController>();
+        attackSystem = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterAttackSystem>();
         currHp = maxHp;
         Repeat();
     }
@@ -92,7 +94,11 @@ public class EnemyStatsSystem : MonoBehaviour
     public void TakeDamage(float dmg)
     {
         if (currHp - dmg <= 0) Die();
-        else currHp -= dmg;
+        else
+        {
+            attackSystem.attackCheck = true;
+            currHp -= dmg;
+        }
     }
 
     public void TakeDamageAndStun(float dmg)

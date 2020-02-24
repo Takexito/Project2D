@@ -42,7 +42,8 @@ public class CharacterStatsSystem : MonoBehaviour
     }    
     void RegenStm()
     {
-        if(currStm != maxStm) currStm += regenStm;
+        if(currStm != maxStm && currStm < maxStm) currStm += regenStm;
+        if (currStm > maxStm) currStm = maxStm;
     }
 
     // Update is called once per frame

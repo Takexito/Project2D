@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,6 +12,8 @@ public class CharacterController2D : MonoBehaviour
     public GameObject target;
     public Animator animator;
     private bool isStun = false;
+    private bool isRobot = true;
+    public string playableCharacterTagName = "Player";
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +29,23 @@ public class CharacterController2D : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q)) UseSkill(1);
         if (Input.GetKeyDown(KeyCode.E)) UseSkill(2);
         if (Input.GetKeyDown(KeyCode.R)) UseSkill(3);
+        if (Input.GetKeyDown(KeyCode.Tab)) SwitchPlayerCharacter();
+    }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (playableCharacterTagName == "Girl" && gameObject.tag == "Player")
+        {
+            Transform rootT = other.transform.root;
+            GameObject go = rootT.gameObject;
+            Debug.Log("Enter to Trigger, " + go.tag);
+            if (Input.GetKeyDown(KeyCode.Y) && go.tag == "Girl")
+            {
+                go.SetActive(false);
+                playableCharacterTagName = "Player";
+                Debug.Log("Switch player");
+            }
+        }
     }
 
     private void UseSkill(int index)
@@ -42,5 +62,19 @@ public class CharacterController2D : MonoBehaviour
     public void ChangeStunState(bool isStun)
     {
         this.isStun = isStun;
+    }
+
+    public void SwitchPlayerCharacter()
+    {
+        if (isRobot)
+        {
+            isRobot = false;
+            playableCharacterTagName = "Girl";
+        }
+        else if(!isRobot)
+        {
+            isRobot = true;
+            playableCharacterTagName = "Player";
+        }
     }
 }

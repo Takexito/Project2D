@@ -25,7 +25,7 @@ public class CharacterMovement : MonoBehaviour
         charCont2d = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterController2D>();
         playerTransform = GameObject.FindGameObjectWithTag(charCont2d.playableCharacterTagName).transform;
         rb2d = GameObject.FindGameObjectWithTag(charCont2d.playableCharacterTagName).GetComponent<Rigidbody2D>();
-        animator = Single.Instance.CharacterController2D.animator;
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame

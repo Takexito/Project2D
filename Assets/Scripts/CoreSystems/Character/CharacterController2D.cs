@@ -24,13 +24,24 @@ public class CharacterController2D : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0)) attackSystem.AddAtackToQueue();
-        if (Input.GetKeyDown(KeyCode.Space)) UseSkill(0);
-        if (Input.GetKeyDown(KeyCode.Q)) UseSkill(1);
-        if (Input.GetKeyDown(KeyCode.E)) UseSkill(2);
-        if (Input.GetKeyDown(KeyCode.R)) UseSkill(3);
-        if (Input.GetKeyDown(KeyCode.Tab)) SwitchPlayerCharacter();
+        if (isRobot)
+        {
+            if (Input.GetMouseButtonDown(0)) attackSystem.AddAtackToQueue();
+            if (Input.GetKeyDown(KeyCode.Space)) UseSkill(0);
+            if (Input.GetKeyDown(KeyCode.Q)) UseSkill(1);
+            if (Input.GetKeyDown(KeyCode.E)) UseSkill(2);
+            if (Input.GetKeyDown(KeyCode.R)) UseSkill(3);
+            if (Input.GetKeyDown(KeyCode.Tab)) SwitchPlayerCharacter();
+        }
+        else
+        {
+            if (Input.GetMouseButtonDown(0)) attackSystem.AddAtackToQueue();
+            if (Input.GetKeyDown(KeyCode.Space)) UseSkill(0);
+            if (Input.GetKeyDown(KeyCode.Tab)) SwitchPlayerCharacter();
+        }
+
     }
+
 
     private void OnTriggerStay2D(Collider2D other)
     {

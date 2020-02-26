@@ -29,7 +29,7 @@ public class CharacterAttackSystem: MonoBehaviour
     {
         if (!isAttack) 
         {
-            Single.Instance.CharacterController2D.animator.SetTrigger("IsAttack");
+            gameObject.GetComponent<CharacterController2D>().animator.SetTrigger("IsAttack");
             StartCoroutine("Attack");
             startCombo = Time.time;
             attackCheck = false;
@@ -66,7 +66,7 @@ public class CharacterAttackSystem: MonoBehaviour
             yield return new WaitForSeconds(1f / attackSpeedPerSec);
             
             isAttack = false;
-            Single.Instance.CharacterController2D.animator.SetBool("IsAttack", false);
+            gameObject.GetComponent<CharacterController2D>().animator.SetBool("IsAttack", false);
             weapon.SetActive(isAttack);
 
         }

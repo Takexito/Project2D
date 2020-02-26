@@ -333,6 +333,10 @@ PrefabInstance:
       propertyPath: maxHp
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 254755081, guid: 45c55c98abd526247ac2481686c63029, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 8661dd3c33b627d40af977c9f6b3818c, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45c55c98abd526247ac2481686c63029, type: 3}
 --- !u!1 &1117959262
@@ -1713,7 +1717,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6057858387261849481}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: be03d2677ccdaa441ae82a6560a814a7, type: 3}
   m_Name: 

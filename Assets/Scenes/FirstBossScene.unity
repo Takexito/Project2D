@@ -707,6 +707,53 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 8224700337103459831}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2003081730
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2003081731}
+  - component: {fileID: 2003081732}
+  m_Layer: 0
+  m_Name: GirlTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2003081731
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2003081730}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1410225644}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &2003081732
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2003081730}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 150
 --- !u!1 &2012448577 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1146072683070669677, guid: 45c55c98abd526247ac2481686c63029,
@@ -1261,6 +1308,7 @@ MonoBehaviour:
   - {fileID: 0}
   target: {fileID: 0}
   animator: {fileID: 868611984852266137}
+  playableCharacterTagName: Player
 --- !u!95 &868611984852266137
 Animator:
   serializedVersion: 3
@@ -1690,7 +1738,7 @@ GameObject:
   - component: {fileID: 868611984852266137}
   m_Layer: 8
   m_Name: CharacterGirl
-  m_TagString: Player
+  m_TagString: Girl
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

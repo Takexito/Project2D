@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CharacterMovement : MonoBehaviour
 {
+    private CharacterController2D charCont2d;
+    private Transform playerTransform;
 
     [SerializeField]
     private float speed = 10f; // Скорость передвижения
@@ -20,14 +22,18 @@ public class CharacterMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rb2d = GetComponent<Rigidbody2D>();
+        charCont2d = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterController2D>();
+        playerTransform = GameObject.FindGameObjectWithTag(charCont2d.playableCharacterTagName).transform;
+        rb2d = GameObject.FindGameObjectWithTag(charCont2d.playableCharacterTagName).GetComponent<Rigidbody2D>();
         animator = Single.Instance.CharacterController2D.animator;
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        rb2d = GameObject.FindGameObjectWithTag(charCont2d.playableCharacterTagName).GetComponent<Rigidbody2D>();
+        playerTransform = GameObject.FindGameObjectWithTag(charCont2d.playableCharacterTagName).transform;
+        
     }
 
     void FixedUpdate()
@@ -38,7 +44,7 @@ public class CharacterMovement : MonoBehaviour
         if (rb2d.velocity.x == 0 && rb2d.velocity.y == 0) Stop();
         if (moveAtack)
         {
-            MoveCharacter(transform.right.x, 0f);
+            MoveCharacter(playerTransform.transform.right.x, 0f);
             moveAtack = false;
         }
     }
@@ -68,9 +74,9 @@ public class CharacterMovement : MonoBehaviour
     {
         
         isRotate = !isRotate;
-        Vector3 scale = transform.localScale;
+        Vector3 scale = playerTransform.transform.localScale;
         scale.x *= -1;
-        transform.localScale = scale;
+        playerTransform.transform.localScale = scale;
         
     }
 
@@ -104,7 +110,7 @@ public class CharacterMovement : MonoBehaviour
     public void MoveAfterHit()
     {
         //moveAtack = true;
-        transform.Translate(transform.right * 20f);
+        playerTransform.transform.Translate(playerTransform.transform.right * 20f);
     }
 
 }

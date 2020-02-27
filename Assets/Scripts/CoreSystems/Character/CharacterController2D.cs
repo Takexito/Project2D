@@ -10,6 +10,8 @@ public class CharacterController2D : MonoBehaviour
     public CharacterMovement movement;
     public MonoBehaviour[] skills;
     public GameObject target;
+    public GameObject girlGameObject;
+    public GameObject robotGameObject;
     public Animator animator;
     private bool isStun = false;
     private bool isRobot = true;
@@ -24,6 +26,7 @@ public class CharacterController2D : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log(gameObject.tag);
         if (isRobot)
         {
             if (Input.GetMouseButtonDown(0)) attackSystem.AddAtackToQueue();
@@ -32,6 +35,16 @@ public class CharacterController2D : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E)) UseSkill(2);
             if (Input.GetKeyDown(KeyCode.R)) UseSkill(3);
             if (Input.GetKeyDown(KeyCode.Tab)) SwitchPlayerCharacter();
+            if (Input.GetKeyDown(KeyCode.T))
+            {
+                if (GameObject.FindGameObjectWithTag("Girl"))
+                {
+                    return;
+                }
+                girlGameObject.SetActive(true);
+                girlGameObject.transform.position = new Vector3(robotGameObject.transform.position.x - 200, robotGameObject.transform.position.y, 0);
+                playableCharacterTagName = "Girl";
+            }
         }
         else
         {
@@ -54,6 +67,7 @@ public class CharacterController2D : MonoBehaviour
             {
                 go.SetActive(false);
                 playableCharacterTagName = "Player";
+                isRobot = true;
                 Debug.Log("Switch player");
             }
         }
@@ -77,15 +91,19 @@ public class CharacterController2D : MonoBehaviour
 
     public void SwitchPlayerCharacter()
     {
-        if (isRobot)
+        if (GameObject.FindGameObjectWithTag("Girl") && GameObject.FindGameObjectWithTag("Player"))
         {
-            isRobot = false;
-            playableCharacterTagName = "Girl";
+            if (isRobot)
+            {
+                isRobot = false;
+                playableCharacterTagName = "Girl";
+            }
+            else if(!isRobot)
+            {
+                isRobot = true;
+                playableCharacterTagName = "Player";
+            }
         }
-        else if(!isRobot)
-        {
-            isRobot = true;
-            playableCharacterTagName = "Player";
-        }
+        
     }
 }

@@ -20,6 +20,7 @@ public class CameraFollow : MonoBehaviour
     {
         //Debug.Log(charCont2d.playableCharacterTagName);
         player = GameObject.FindGameObjectWithTag(charCont2d.playableCharacterTagName).transform;
+        
         if (player)
         {
             Vector3 currentPosition = Vector3.Lerp(transform.position, new Vector3(player.position.x, player.position.y, transform.position.z), dumping * Time.deltaTime);

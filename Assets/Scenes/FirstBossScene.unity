@@ -333,6 +333,14 @@ PrefabInstance:
       propertyPath: maxHp
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 254755089, guid: 45c55c98abd526247ac2481686c63029, type: 3}
+      propertyPath: girlGameObject
+      value: 
+      objectReference: {fileID: 6530794593785707380}
+    - target: {fileID: 254755089, guid: 45c55c98abd526247ac2481686c63029, type: 3}
+      propertyPath: robotGameObject
+      value: 
+      objectReference: {fileID: 1581943067}
     - target: {fileID: 254755081, guid: 45c55c98abd526247ac2481686c63029, type: 3}
       propertyPath: m_Controller
       value: 
@@ -610,6 +618,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4aaa538e41631f8408618a221403dbcc, type: 3}
+--- !u!1 &1581943067 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6246465106726098660, guid: 45c55c98abd526247ac2481686c63029,
+    type: 3}
+  m_PrefabInstance: {fileID: 969305238}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1586378117
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1311,6 +1325,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   target: {fileID: 0}
+  girlGameObject: {fileID: 6530794593785707380}
+  robotGameObject: {fileID: 1581943067}
   animator: {fileID: 868611984852266137}
   playableCharacterTagName: Player
 --- !u!95 &868611984852266137

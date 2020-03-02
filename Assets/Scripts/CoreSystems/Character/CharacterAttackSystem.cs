@@ -7,7 +7,7 @@ public class CharacterAttackSystem: MonoBehaviour
 {
     private CharacterStatsSystem statsSystem;
     
-    public GameObject weapon;
+    public GameObject[] weapons;
     public float attackSpeedPerSec = 2f;
     public bool isAttack = false;
     public bool isStun = false;
@@ -25,29 +25,29 @@ public class CharacterAttackSystem: MonoBehaviour
         mainRegSt = statsSystem.regenStm;
     }
 
-    public void AddAtackToQueue()
+    public void AddAtackToQueue(int weaponNum = 0)
     {
         if (!isAttack) 
         {
+            Debug.Log(weaponNum);
+            if (weaponNum > weapons.Length - 1) weaponNum = 0;
             gameObject.GetComponent<CharacterController2D>().animator.SetTrigger("IsAttack");
-            StartCoroutine("Attack");
+            StartCoroutine("Attack", weaponNum);
+            
             startCombo = Time.time;
             attackCheck = false;
         }
 
     }
-    public void Change()
-    {
-        weapon.SetActive(!weapon.activeSelf);
-    }
 
-    IEnumerator Attack()
+
+    IEnumerator Attack(int weaponNum)
     {
         if (!isStun)
         {
             
             isAttack = true;
-            weapon.SetActive(isAttack);
+            weapons[weaponNum].SetActive(isAttack);
             Single.Instance.CharacterController2D.movement.MoveAfterHit();
             if (Time.time - startCombo < timeComboBreak && attackCheck)
             {
@@ -67,7 +67,7 @@ public class CharacterAttackSystem: MonoBehaviour
             
             isAttack = false;
             gameObject.GetComponent<CharacterController2D>().animator.SetBool("IsAttack", false);
-            weapon.SetActive(isAttack);
+            weapons[weaponNum].SetActive(isAttack);
 
         }
     }

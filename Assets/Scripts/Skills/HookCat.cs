@@ -6,13 +6,15 @@ public class HookCat : MonoBehaviour, ISkills
 {
     public float range = 500f;
     public float dmg = 5f;
+    private CharacterController2D playerControler;
     public LineRenderer line;
+
     public void UseSkill()
     {
         // Calculate Vectors
-        Vector2 pos = Single.Instance.CharacterController2D.gameObject.transform.position;
+        Vector2 pos = playerControler.gameObject.transform.position;
         pos = new Vector2 (pos.x + 50f, pos.y);
-        Vector2 dir = Single.Instance.CharacterController2D.gameObject.transform.right;
+        Vector2 dir = playerControler.gameObject.transform.right;
 
         // Draw Line
         SetupLine(pos, pos + dir*range);
@@ -29,6 +31,7 @@ public class HookCat : MonoBehaviour, ISkills
                 Debug.Log("Hook" + hit2D.distance);
                 MoveCharacterToTarget(target.transform.position);
             }
+            Debug.Log("Hook" + hit2D.rigidbody.tag);
         }
 
         
@@ -36,7 +39,7 @@ public class HookCat : MonoBehaviour, ISkills
 
     void MoveCharacterToTarget(Vector2 pos)
     {
-        Single.Instance.CharacterController2D.movement.MoveToPoint(pos);
+        playerControler.movement.MoveToPoint(pos);
     }
 
     void DisableLine()
@@ -59,6 +62,7 @@ public class HookCat : MonoBehaviour, ISkills
     // Start is called before the first frame update
     void Start()
     {
+        playerControler = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterController2D>();
         line = gameObject.AddComponent<LineRenderer>();
     }
 

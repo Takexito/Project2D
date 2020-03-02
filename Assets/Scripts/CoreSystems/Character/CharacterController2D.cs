@@ -37,13 +37,13 @@ public class CharacterController2D : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Tab)) SwitchPlayerCharacter();
             if (Input.GetKeyDown(KeyCode.T))
             {
-                if (GameObject.FindGameObjectWithTag("Girl"))
+                if (!gameObject.CompareTag("Girl"))
                 {
-                    return;
+                    girlGameObject.SetActive(true);
+                    girlGameObject.transform.position = new Vector3(robotGameObject.transform.position.x - 200, robotGameObject.transform.position.y, 0);
+                    playableCharacterTagName = "Girl";
                 }
-                girlGameObject.SetActive(true);
-                girlGameObject.transform.position = new Vector3(robotGameObject.transform.position.x - 200, robotGameObject.transform.position.y, 0);
-                playableCharacterTagName = "Girl";
+
             }
         }
         else

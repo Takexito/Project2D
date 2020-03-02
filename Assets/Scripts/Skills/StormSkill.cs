@@ -22,16 +22,16 @@ public class StormSkill : MonoBehaviour, ISkills
 
     IEnumerator StormSkillCor()
     {
-        CharacterAttackSystem attack = parent.GetComponent<IController>().GetAttackSystem();
-        float end = Time.time + 3;
-        attack.Change();
-        while (Time.time < end)
-        {
-            parent.transform.Rotate(Vector3.forward * -60f);
+        //CharacterAttackSystem attack = parent.GetComponent<IController>().GetAttackSystem();
+        //float end = Time.time + 3;
+        //attack.Change();
+        //while (Time.time < end)
+        //{
+        //    parent.transform.Rotate(Vector3.forward * -60f);
             yield return new WaitForSeconds(0.1f); // Задержка выполнения следующего шага
-        }
-        parent.transform.rotation = new Quaternion(0, 0, 0, 0);
-        attack.Change();
+        //}
+        //parent.transform.rotation = new Quaternion(0, 0, 0, 0);
+        //attack.Change();
     }
 
 }

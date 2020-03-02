@@ -101,10 +101,10 @@ public class EnemyStatsSystem : MonoBehaviour
         }
     }
 
-    public void TakeDamageAndStun(float dmg)
+    public void TakeDamageAndStun(float dmg, float time = 0.5f)
     {
         TakeDamage(dmg);
-        StartCoroutine(Stun(0.5f));
+        StartCoroutine(Stun(time));
     }
 
     public float GiveDamage()

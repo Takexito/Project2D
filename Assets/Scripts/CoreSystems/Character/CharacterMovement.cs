@@ -8,9 +8,8 @@ public class CharacterMovement : MonoBehaviour
     private Transform playerTransform;
 
     [SerializeField]
-    private float speed = 10f; // Скорость передвижения
+    private float speed; // Скорость передвижения
     [Range(0, .3f)] [SerializeField] private float smoothing = .05f;
-    //public float moveForce = 500f;
     private Rigidbody2D rb2d; // Сам игровой объект
     private Animator animator;
     private bool isRotate = false;
@@ -38,21 +37,23 @@ public class CharacterMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        float h = Input.GetAxis("Horizontal");
-        float v = Input.GetAxis("Vertical");
-        Movement(h, v);
-        if (rb2d.velocity.x == 0 && rb2d.velocity.y == 0) Stop();
-        if (moveAtack)
+        if (gameObject.CompareTag(charCont2d.playableCharacterTagName))
         {
-            MoveCharacter(playerTransform.transform.right.x, 0f);
-            moveAtack = false;
+            float h = Input.GetAxis("Horizontal");
+            float v = Input.GetAxis("Vertical");
+            Movement(h, v);
+            if (rb2d.velocity.x == 0 && rb2d.velocity.y == 0) Stop();
+            if (moveAtack)
+            {
+                MoveCharacter(playerTransform.transform.right.x, 0f);
+                moveAtack = false;
+            }
         }
+
     }
 
-    private void Movement(float h, float v)
+    private void Movement(float deltaX, float deltaY)
     {
-        float deltaX = h * speed; // Хранение направления передвижения вправо или влево, умноженное на скорость
-        float deltaY = v * speed; // Хранение направления передвижения вверх или вниз, умноженноое на скорость
         animator.SetFloat("Speed", Mathf.Abs(deltaX));
 
         if (deltaX < 0 && !isRotate)
@@ -82,24 +83,19 @@ public class CharacterMovement : MonoBehaviour
 
     public void MoveCharacter(float dX, float dY)
     {
-        Vector2 movement = new Vector2(dX, dY); // Создаем переменную в которой будем хранить окончательное направление
-        //movement *= moveForce * Time.deltaTime;
-        movement *= speed * Time.deltaTime;
-        //rb2d.AddForce(movement);
-        rb2d.velocity = Vector2.SmoothDamp(rb2d.velocity, movement, ref velocity, smoothing);
-
-        //if (rb2d.velocity.x >= speed) rb2d.velocity = new Vector2 (speed, rb2d.velocity.y);
-        //if (rb2d.velocity.x <= -speed) rb2d.velocity = new Vector2 (-speed, rb2d.velocity.y);
-        //if (rb2d.velocity.y >= speed) rb2d.velocity = new Vector2(rb2d.velocity.x, speed);
-        //if (rb2d.velocity.y <= -speed) rb2d.velocity = new Vector2(rb2d.velocity.x, -speed);
-
-        //rb2d.MovePosition(transform.position + movement); // Движение персонажа 
+        Vector2 input = new Vector2(dX, dY); // Создаем переменную в которой будем хранить окончательное направление
+        input = Vector2.ClampMagnitude(input, 1);
+        Vector2 movement = input * speed * speed * Time.fixedDeltaTime;
+        //Vector2 newPos = rb2d.position + movement;
+        //rb2d.MovePosition(newPos);
+         rb2d.velocity = Vector2.SmoothDamp(rb2d.velocity, movement, ref velocity, smoothing);
+         //Debug.Log(rb2d.velocity);
 
     }
 
     public void MoveToPoint(Vector2 point)
     {
-        rb2d.MovePosition(point);
+        transform.position = point;
         Debug.Log("Move" + point);
     } 
     public void Move(Vector2 direction)

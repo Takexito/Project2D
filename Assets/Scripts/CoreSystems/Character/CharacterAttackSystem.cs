@@ -10,7 +10,7 @@ public class CharacterAttackSystem: MonoBehaviour
     public GameObject[] weapons;
     public float attackSpeedPerSec = 2f;
     public bool isAttack = false;
-    public bool isStun = false;
+    public bool isStun = true;
     public Queue<bool> queue = new Queue<bool>();
     public float timeComboBreak = 5f;
     public int comboCounter;
@@ -31,7 +31,7 @@ public class CharacterAttackSystem: MonoBehaviour
         {
             Debug.Log(weaponNum);
             if (weaponNum > weapons.Length - 1) weaponNum = 0;
-            gameObject.GetComponent<CharacterController2D>().animator.SetTrigger("IsAttack");
+            //gameObject.GetComponent<CharacterController2D>().animator.SetTrigger("IsAttack");
             StartCoroutine("Attack", weaponNum);
             
             startCombo = Time.time;
@@ -66,7 +66,7 @@ public class CharacterAttackSystem: MonoBehaviour
             yield return new WaitForSeconds(1f / attackSpeedPerSec);
             
             isAttack = false;
-            gameObject.GetComponent<CharacterController2D>().animator.SetBool("IsAttack", false);
+            //gameObject.GetComponent<CharacterController2D>().animator.SetBool("IsAttack", false);
             weapons[weaponNum].SetActive(isAttack);
 
         }

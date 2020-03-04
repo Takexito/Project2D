@@ -12,23 +12,22 @@ public class CharacterController2D : MonoBehaviour
     public GameObject target;
     public GameObject girlGameObject;
     public GameObject robotGameObject;
-    public Animator animator;
     private bool isStun = false;
+    public bool isActive = false;
     private bool isRobot = true;
     public string playableCharacterTagName = "Player";
 
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(gameObject.tag);
-        if (isRobot)
+        if (isActive)
         {
+            //Debug.Log(gameObject.tag);
             if (Input.GetMouseButtonDown(0)) attackSystem.AddAtackToQueue();
             if (Input.GetKeyDown(KeyCode.Space)) UseSkill(0);
             if (Input.GetKeyDown(KeyCode.Q)) UseSkill(1);
@@ -46,13 +45,14 @@ public class CharacterController2D : MonoBehaviour
 
             }
         }
-        else
-        {
-            if (Input.GetMouseButtonDown(0)) attackSystem.AddAtackToQueue();
-            if (Input.GetKeyDown(KeyCode.Space)) UseSkill(0);
-            if (Input.GetKeyDown(KeyCode.Tab)) SwitchPlayerCharacter();
-        }
 
+    }
+
+    public void SetActive(bool isActive)
+    {
+        this.isActive = isActive;
+        movement.isStop = !isActive;
+        attackSystem.isStun = !isActive;
     }
 
 

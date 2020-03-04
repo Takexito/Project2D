@@ -15,23 +15,25 @@ public class CharacterMovement : MonoBehaviour
     private bool isRotate = false;
     private bool moveAtack = false;
     private Vector2 velocity = Vector2.zero;
+    IsometricCharacterRenderer isoRenderer;
+
 
     public float Speed { get => speed; set => speed = value; }
 
     // Start is called before the first frame update
     void Start()
     {
-        charCont2d = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterController2D>();
+        charCont2d = gameObject.GetComponent<CharacterController2D>();
         playerTransform = GameObject.FindGameObjectWithTag(charCont2d.playableCharacterTagName).transform;
         rb2d = GameObject.FindGameObjectWithTag(charCont2d.playableCharacterTagName).GetComponent<Rigidbody2D>();
+        isoRenderer = GetComponentInChildren<IsometricCharacterRenderer>();
         animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        rb2d = GameObject.FindGameObjectWithTag(charCont2d.playableCharacterTagName).GetComponent<Rigidbody2D>();
-        playerTransform = GameObject.FindGameObjectWithTag(charCont2d.playableCharacterTagName).transform;
+
         
     }
 
@@ -41,7 +43,7 @@ public class CharacterMovement : MonoBehaviour
         {
             float h = Input.GetAxis("Horizontal");
             float v = Input.GetAxis("Vertical");
-            Movement(h, v);
+            MoveCharacter(h, v);
             if (rb2d.velocity.x == 0 && rb2d.velocity.y == 0) Stop();
             if (moveAtack)
             {
@@ -54,12 +56,12 @@ public class CharacterMovement : MonoBehaviour
 
     private void Movement(float deltaX, float deltaY)
     {
-        animator.SetFloat("Speed", Mathf.Abs(deltaX));
+        //animator.SetFloat("Speed", Mathf.Abs(deltaX));
 
-        if (deltaX < 0 && !isRotate)
-            Flip();
-        if (deltaX > 0 && isRotate)
-            Flip();
+        //if (deltaX < 0 && !isRotate)
+        //    Flip();
+        //if (deltaX > 0 && isRotate)
+        //    Flip();
 
         MoveCharacter(deltaX, deltaY);
     }
@@ -67,8 +69,8 @@ public class CharacterMovement : MonoBehaviour
 
     public void Stop()
     {
-        rb2d.velocity = Vector2.zero;
-        animator.SetFloat("Speed", Mathf.Abs(0));
+        //rb2d.velocity = Vector2.zero;
+        //animator.SetFloat("Speed", Mathf.Abs(0));
     }
 
     public void Flip()
@@ -83,14 +85,23 @@ public class CharacterMovement : MonoBehaviour
 
     public void MoveCharacter(float dX, float dY)
     {
-        Vector2 input = new Vector2(dX, dY); // Создаем переменную в которой будем хранить окончательное направление
-        input = Vector2.ClampMagnitude(input, 1);
-        Vector2 movement = input * speed * speed * Time.fixedDeltaTime;
-        //Vector2 newPos = rb2d.position + movement;
-        //rb2d.MovePosition(newPos);
-         rb2d.velocity = Vector2.SmoothDamp(rb2d.velocity, movement, ref velocity, smoothing);
-         //Debug.Log(rb2d.velocity);
+        //Vector2 input = new Vector2(dX, dY); // Создаем переменную в которой будем хранить окончательное направление
+        //input = Vector2.ClampMagnitude(input, 1);
+        //Vector2 movement = input * speed * speed * Time.fixedDeltaTime;
+        ////Vector2 newPos = rb2d.position + movement;
+        ////rb2d.MovePosition(newPos);
+        // rb2d.velocity = Vector2.SmoothDamp(rb2d.velocity, movement, ref velocity, smoothing);
+        ////Debug.Log(rb2d.velocity);
 
+        Vector2 currentPos = rb2d.position;
+        float horizontalInput = dX;
+        float verticalInput = dY;
+        Vector2 inputVector = new Vector2(horizontalInput, verticalInput);
+        inputVector = Vector2.ClampMagnitude(inputVector, 1);
+        Vector2 movement = inputVector * speed;
+        Vector2 newPos = currentPos + movement * Time.fixedDeltaTime;
+        isoRenderer.SetDirection(movement);
+        rb2d.MovePosition(newPos);
     }
 
     public void MoveToPoint(Vector2 point)

@@ -20,7 +20,7 @@ public class SlowMoSkill : MonoBehaviour, ISkills
             }
             else
             {
-                isSlow = true;
+                isSlow = false;
                 Time.timeScale = 1f;
             }
         }

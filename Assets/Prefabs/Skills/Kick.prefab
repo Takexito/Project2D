@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7496952975071263222}
-  - component: {fileID: 7688712105836902282}
+  - component: {fileID: 5543132845173929132}
   m_Layer: 0
-  m_Name: Storm
+  m_Name: Kick
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,7 +31,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7688712105836902282
+--- !u!114 &5543132845173929132
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -40,6 +40,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 5210744995202897430}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8aac8e2dd6a9364cafbc2074a69d98a, type: 3}
+  m_Script: {fileID: 11500000, guid: a160b9ce3cc744340b78702e744f20bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coolDown: 2
+  coolDownEnd: 0

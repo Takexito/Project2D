@@ -5,6 +5,7 @@ using UnityEngine;
 public class RoboFists : MonoBehaviour
 {
     GameObject parent;
+    public Transform popupDamgage;
 
     // Start is called before the first frame update
     void Start()
@@ -20,10 +21,13 @@ public class RoboFists : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "Enemy")
         {
-            EnemyStatsSystem statsSystem = collision.GetComponent<EnemyStatsSystem>();
-            statsSystem.TakeDamage(parent.GetComponent<CharacterStatsSystem>().GiveDamage());
+            Debug.Log("ATTACK");
+            EnemyStatsSystem statsSystem = collision.GetComponentInParent<EnemyStatsSystem>();
+            int dmg = (int) parent.GetComponent<CharacterStatsSystem>().GiveDamage();
+            statsSystem.TakeDamage(dmg);
+            DamagePopup.Create(statsSystem.transform.position, dmg, false, popupDamgage);
         }
 
     }

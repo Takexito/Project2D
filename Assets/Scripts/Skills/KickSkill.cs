@@ -5,33 +5,52 @@ public class KickSkill : MonoBehaviour, ISkills
 {
     public float coolDown = 2;
     public float coolDownEnd = 0;
-    public float kickForce;
+    public float kickForce = 1f;
+    public bool isKick = false;
 
 
     CharacterController2D parent;
     public void Start()
     {
-        parent = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterController2D>();
+        
     }
     public void UseSkill()
     {
+
+        parent = GameObject.FindGameObjectWithTag(CharacterChange.GetCurrentPlayerTag()).GetComponent<CharacterController2D>();
         if (Time.time > coolDownEnd)
         {
+            Debug.Log("USE");
+            
             coolDownEnd = Time.time + coolDown;
-            CharacterAttackSystem attack = parent.attackSystem;
-
-            attack.AddAtackToQueue(1);
+            isKick = true;
         }
     }
 
+    public void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy" && isKick)
+        {
+            isKick = false;
+            EnemyStatsSystem statsSystem = collision.GetComponentInParent<EnemyStatsSystem>();
+            statsSystem.TakeDamageAndStun(parent.GetComponent<CharacterStatsSystem>().GiveDamage(), 0.25f);
+            collision.attachedRigidbody.AddForce(parent.movement.lastDirectionVector2 * parent.transform.lossyScale.x * kickForce);
+            Debug.Log("KICK!!!");
+
+        }
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Enemy")
+        
+
+        if (collision.gameObject.tag == "Enemy" && isKick)
         {
-            EnemyStatsSystem statsSystem = collision.GetComponent<EnemyStatsSystem>();
-            statsSystem.TakeDamageAndStun(parent.GetComponent<CharacterStatsSystem>().GiveDamage(), 1f);
-            collision.attachedRigidbody.AddForce(parent.transform.right * parent.transform.lossyScale.x * kickForce);
+            isKick = false;
+            EnemyStatsSystem statsSystem = collision.GetComponentInParent<EnemyStatsSystem>();
+            statsSystem.TakeDamageAndStun(parent.GetComponent<CharacterStatsSystem>().GiveDamage(), 0.25f);
+            collision.attachedRigidbody.AddForce(parent.movement.lastDirectionVector2 * kickForce);
             Debug.Log("KICK!!!");
+            
         }
 
     }

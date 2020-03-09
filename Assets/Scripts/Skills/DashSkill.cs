@@ -19,7 +19,7 @@ public class DashSkill : MonoBehaviour, ISkills
 
     IEnumerator DashMove()
     {
-        CharacterMovement movement = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterController2D>().movement;
+        CharacterMovement movement = GameObject.FindGameObjectWithTag(CharacterChange.GetCurrentPlayerTag()).GetComponent<CharacterController2D>().movement;
 
         transform.Rotate(Vector3.forward * -90);
         movement.Speed *= dashForce;

@@ -50,21 +50,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.7
---- !u!114 &6141175699031413605
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2388879730968089994}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a160b9ce3cc744340b78702e744f20bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  coolDown: 2
-  coolDownEnd: 0
-  kickForce: 0
 --- !u!1 &3454650120849936839
 GameObject:
   m_ObjectHideFlags: 0
@@ -75,7 +60,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7486973548529782685}
   - component: {fileID: 397918423825599259}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: GirlTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,7 +109,7 @@ GameObject:
   - component: {fileID: 8890648952467840619}
   - component: {fileID: 8890648952467840616}
   - component: {fileID: 8890648952467840617}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RobotRender
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -235,7 +220,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8890648953026619772}
   - component: {fileID: 8890648953026619775}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PlayerCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -283,12 +268,11 @@ GameObject:
   - component: {fileID: 8890648953191517857}
   - component: {fileID: 8890648953191517863}
   - component: {fileID: 6141175698944321277}
-  - component: {fileID: 6141175698944321276}
   - component: {fileID: 716788727064487571}
   - component: {fileID: 7564327927259228047}
   - component: {fileID: 1948575667796532405}
   - component: {fileID: 1712615131155558474}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PlayerRobot
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -346,19 +330,6 @@ SortingGroup:
   m_SortingLayerID: 2130146985
   m_SortingLayer: 0
   m_SortingOrder: 10
---- !u!114 &6141175698944321276
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8890648953191517860}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3eab727fbd8b1a469bc9852cd37a302, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movementSpeed: 1
 --- !u!114 &716788727064487571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -377,10 +348,12 @@ MonoBehaviour:
   skills:
   - {fileID: 2517486616079423547}
   - {fileID: 6838594659354591292}
+  - {fileID: 2709584186983397168}
+  - {fileID: 0}
   target: {fileID: 0}
   girlGameObject: {fileID: 0}
-  robotGameObject: {fileID: 0}
-  animator: {fileID: 0}
+  robotGameObject: {fileID: 8890648953191517860}
+  isActive: 0
   playableCharacterTagName: Player
 --- !u!114 &7564327927259228047
 MonoBehaviour:
@@ -394,7 +367,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3cea8c3d26907b4aa68c00b2a7277ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapons: []
+  weapons:
+  - {fileID: 591222589081341838}
   attackSpeedPerSec: 2
   isAttack: 0
   isStun: 0
@@ -415,7 +389,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
-  smoothing: 0.05
+  isStop: 1
+  lastDirectionVector2: {x: 0, y: 0}
 --- !u!114 &1712615131155558474
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -446,7 +421,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8890648953342826934}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Robot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -559,6 +534,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HookCat
+      objectReference: {fileID: 0}
+    - target: {fileID: 3120263146420590664, guid: 803377520291d94488e152d68b827b03,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4658571153321916300, guid: 803377520291d94488e152d68b827b03,
         type: 3}
@@ -712,9 +692,35 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 5543132845173929132, guid: 5712169e59f917a47a6acdc40a8c6eb0, type: 3}
+    - target: {fileID: 5543132845173929132, guid: 5712169e59f917a47a6acdc40a8c6eb0,
+        type: 3}
+      propertyPath: coolDown
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5543132845173929132, guid: 5712169e59f917a47a6acdc40a8c6eb0,
+        type: 3}
+      propertyPath: coolDownEnd
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5543132845173929132, guid: 5712169e59f917a47a6acdc40a8c6eb0,
+        type: 3}
+      propertyPath: kickForce
+      value: 2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5712169e59f917a47a6acdc40a8c6eb0, type: 3}
+--- !u!114 &2709584186983397168 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5543132845173929132, guid: 5712169e59f917a47a6acdc40a8c6eb0,
+    type: 3}
+  m_PrefabInstance: {fileID: 7599623720940684188}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2388879730968089994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a160b9ce3cc744340b78702e744f20bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &107469018929265258 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7496952975071263222, guid: 5712169e59f917a47a6acdc40a8c6eb0,
@@ -799,6 +805,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6502508639428311569, guid: 796108d4bc9b3c848a94ccb2f87a0e81,
+        type: 3}
+      propertyPath: dashForce
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 796108d4bc9b3c848a94ccb2f87a0e81, type: 3}
 --- !u!114 &2517486616079423547 stripped
@@ -830,6 +841,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RoboFists
+      objectReference: {fileID: 0}
+    - target: {fileID: 8200570683941059338, guid: c4a849b4f23a9d04eb1c178e275b386a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8200570683941059342, guid: c4a849b4f23a9d04eb1c178e275b386a,
         type: 3}
@@ -893,11 +909,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6852987238298155897, guid: c4a849b4f23a9d04eb1c178e275b386a,
         type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6852987238298155897, guid: c4a849b4f23a9d04eb1c178e275b386a,
-        type: 3}
       propertyPath: m_Offset.y
       value: 0
       objectReference: {fileID: 0}
@@ -908,6 +919,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c4a849b4f23a9d04eb1c178e275b386a, type: 3}
+--- !u!1 &591222589081341838 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8200570683941059338, guid: c4a849b4f23a9d04eb1c178e275b386a,
+    type: 3}
+  m_PrefabInstance: {fileID: 8789397380235048068}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &591222589081341834 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8200570683941059342, guid: c4a849b4f23a9d04eb1c178e275b386a,

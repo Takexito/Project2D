@@ -68,9 +68,12 @@ public class EnemyStatsSystem : MonoBehaviour
     // Status
     IEnumerator Stun(float duration)
     {
+        controller.movement.Stop(true);
         isStun = true;
         yield return new WaitForSeconds(duration);
         isStun = false;
+        controller.movement.Stop(false);
+
     }
 
     public void ShouldDie()

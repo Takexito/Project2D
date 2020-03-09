@@ -6,7 +6,7 @@ public class CharacterChange : MonoBehaviour
 {
     CharacterController2D girlConroller;
     CharacterController2D robotConroller;
-    private bool isRobot = true;
+    public static bool isRobot = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,15 +23,26 @@ public class CharacterChange : MonoBehaviour
             if (isRobot)
             {
                 isRobot = false;
+                robotConroller.movement.Stop();
                 robotConroller.SetActive(false);
                 girlConroller.SetActive(true);
             }
             else
             {
                 isRobot = true;
+                girlConroller.movement.Stop();
                 robotConroller.SetActive(true);
                 girlConroller.SetActive(false);
             }
         }
+    }
+
+    public static string GetCurrentPlayerTag()
+    {
+        if (isRobot)
+        {
+            return "Player";
+        }
+        else return "Girl";
     }
 }

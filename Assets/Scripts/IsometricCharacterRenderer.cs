@@ -12,6 +12,7 @@ public class IsometricCharacterRenderer : MonoBehaviour
     Animator animator;
     int lastDirection;
 
+
     private void Awake()
     {
         //cache the animator component

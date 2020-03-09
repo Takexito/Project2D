@@ -21,7 +21,7 @@ public class CharacterAttackSystem: MonoBehaviour
 
     private void Start()
     {
-        statsSystem = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterStatsSystem>();
+        statsSystem = GameObject.FindGameObjectWithTag(CharacterChange.GetCurrentPlayerTag()).GetComponent<CharacterStatsSystem>();
         mainRegSt = statsSystem.regenStm;
     }
 
@@ -32,6 +32,7 @@ public class CharacterAttackSystem: MonoBehaviour
             Debug.Log(weaponNum);
             if (weaponNum > weapons.Length - 1) weaponNum = 0;
             //gameObject.GetComponent<CharacterController2D>().animator.SetTrigger("IsAttack");
+            Debug.Log("CurrAddDmg = " + statsSystem.addDmg);
             StartCoroutine("Attack", weaponNum);
             
             startCombo = Time.time;
@@ -48,7 +49,7 @@ public class CharacterAttackSystem: MonoBehaviour
             
             isAttack = true;
             weapons[weaponNum].SetActive(isAttack);
-            Single.Instance.CharacterController2D.movement.MoveAfterHit();
+            gameObject.GetComponent<CharacterController2D>().movement.MoveAfterHit();
             if (Time.time - startCombo < timeComboBreak && attackCheck)
             {
                 comboCounter++;

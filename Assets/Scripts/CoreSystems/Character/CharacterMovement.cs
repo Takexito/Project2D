@@ -6,14 +6,15 @@ public class CharacterMovement : MonoBehaviour
 {
     private CharacterController2D charCont2d;
     private Transform playerTransform;
-    IsometricCharacterRenderer isoRenderer;
+    public IsometricCharacterRenderer isoRenderer;
 
     [SerializeField]
     private float speed; // Скорость передвижения
     private Rigidbody2D rb2d; // Сам игровой объект
     private bool moveAtack = false;
     public bool isStop = true;
-    
+    public Vector2 lastDirectionVector2;
+
 
 
     public float Speed { get => speed; set => speed = value; }
@@ -59,10 +60,23 @@ public class CharacterMovement : MonoBehaviour
         Vector2 movement = inputVector * speed;
         Vector2 newPos = currentPos + movement * Time.fixedDeltaTime;
 
+        if(movement.magnitude > .01f)
+        {
+            lastDirectionVector2 = movement;
+        }
+        
         isoRenderer.SetDirection(movement);
         rb2d.MovePosition(newPos);
     }
 
+    public void Stop()
+    {
+        isoRenderer.SetDirection(Vector2.zero);
+    }
+    public Vector2 GetDirection()
+    {
+        return Vector2.ClampMagnitude(lastDirectionVector2, 1);
+    }
     public void MoveToPoint(Vector2 point)
     {
         transform.position = point;
@@ -76,7 +90,8 @@ public class CharacterMovement : MonoBehaviour
     public void MoveAfterHit()
     {
         //moveAtack = true;
-        playerTransform.transform.Translate(playerTransform.transform.right * 20f);
+        playerTransform.transform.Translate(GetDirection() * 0.2f);
+        Debug.Log(GetDirection());
     }
 
 }

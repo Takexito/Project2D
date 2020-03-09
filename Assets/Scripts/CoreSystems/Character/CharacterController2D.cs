@@ -36,10 +36,10 @@ public class CharacterController2D : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Tab)) SwitchPlayerCharacter();
             if (Input.GetKeyDown(KeyCode.T))
             {
-                if (!gameObject.CompareTag("Girl"))
+                if (GameObject.FindGameObjectWithTag("Girl"))
                 {
                     girlGameObject.SetActive(true);
-                    girlGameObject.transform.position = new Vector3(robotGameObject.transform.position.x - 200, robotGameObject.transform.position.y, 0);
+                    girlGameObject.transform.position = new Vector3(robotGameObject.transform.position.x - 1, robotGameObject.transform.position.y, 0);
                     playableCharacterTagName = "Girl";
                 }
 
@@ -75,7 +75,11 @@ public class CharacterController2D : MonoBehaviour
 
     private void UseSkill(int index)
     {
-        if (skills[index] is ISkills) (skills[index] as ISkills).UseSkill();
+        if (skills[index] is ISkills && statsSystem.currStm > (index+1)*5)
+        {
+            (skills[index] as ISkills).UseSkill();
+            statsSystem.currStm -= (index+1)*5;
+        }
     }
     IEnumerator Stun()
     {

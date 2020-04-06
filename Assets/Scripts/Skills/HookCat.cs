@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HookCat : MonoBehaviour, ISkills
 {
-    public float range = 500f;
+    public float range = 2f;
     public float dmg = 5f;
     private CharacterController2D playerControler;
     public LineRenderer line;
@@ -13,9 +13,9 @@ public class HookCat : MonoBehaviour, ISkills
     {
         // Calculate Vectors
         Vector2 pos = playerControler.gameObject.transform.position;
-        pos = new Vector2 (pos.x + 50f, pos.y);
-        Vector2 dir = playerControler.gameObject.transform.right;
-
+        pos = new Vector2 (pos.x, pos.y);
+        Vector2 dir = playerControler.movement.GetDirection();
+        pos += dir;
         // Draw Line
         SetupLine(pos, pos + dir*range);
         Invoke("DisableLine", 0.5f);

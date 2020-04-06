@@ -62,7 +62,7 @@ public class CharacterMovement : MonoBehaviour
 
         if(movement.magnitude > .01f)
         {
-            lastDirectionVector2 = movement;
+            lastDirectionVector2 = movement.normalized;
         }
         
         isoRenderer.SetDirection(movement);
@@ -75,7 +75,7 @@ public class CharacterMovement : MonoBehaviour
     }
     public Vector2 GetDirection()
     {
-        return Vector2.ClampMagnitude(lastDirectionVector2, 1);
+        return lastDirectionVector2;//Vector2.ClampMagnitude(lastDirectionVector2, 1f);
     }
     public void MoveToPoint(Vector2 point)
     {
@@ -91,7 +91,7 @@ public class CharacterMovement : MonoBehaviour
     {
         //moveAtack = true;
         playerTransform.transform.Translate(GetDirection() * 0.2f);
-        Debug.Log(GetDirection());
+        //Debug.Log(GetDirection());
     }
 
 }

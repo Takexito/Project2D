@@ -36,7 +36,6 @@ public class EnemyMovement : MonoBehaviour
             else target = girl;
             if (Vector2.Distance(transform.position, target.position) > 1f)
             { 
-                Debug.Log(Vector2.Distance(transform.position, target.position));
                 Vector2 pos = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
                 rigidbody2d.MovePosition(pos);
                 //Rotate();
